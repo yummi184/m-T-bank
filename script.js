@@ -70,8 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Modify the fetchData function to ensure it updates the current user session after loading data
   fetchData = () => {
-    // Try to get data from server first
-    Promise.all([
+    return Promise.all([
       fetch("/api/users")
         .then((res) => res.json())
         .catch(() => null),
@@ -1508,16 +1507,64 @@ Thank you for banking with M&T BANK!
     const currentUser = getCurrentUser()
 
     if (currentUser) {
-      loginContainer.style.display = "none"
+      // User is logged in, hide login/register and show dashboard
+      if (loginContainer) loginContainer.style.display = "none"
+      if (registerContainer) registerContainer.style.display = "none"
 
       if (currentUser.isAdmin) {
-        adminDashboard.style.display = "flex"
-        updateAdminDashboard()
+        if (adminDashboard) {
+          adminDashboard.style.display = "flex"
+          updateAdminDashboard()
+        }
+        if (dashboardContainer) dashboardContainer.style.display = "none"
       } else {
-        dashboardContainer.style.display = "flex"
-        updateDashboard(currentUser)
+        if (dashboardContainer) {
+          dashboardContainer.style.display = "flex"
+          updateDashboard(currentUser)
+        }
+        if (adminDashboard) adminDashboard.style.display = "none"
       }
+    } else {
+      // No user logged in, show login container
+      if (loginContainer) loginContainer.style.display = "flex"
+      if (registerContainer) registerContainer.style.display = "none"
+      if (dashboardContainer) dashboardContainer.style.display = "none"
+      if (adminDashboard) adminDashboard.style.display = "none"
     }
+  }
+
+  // Initialize the application
+  function initializeApp() {
+    // Ensure only dashboard page is visible initially for user
+    const userPages = document.querySelectorAll(".page")
+    userPages.forEach((page) => {
+      page.classList.remove("active")
+    })
+
+    const dashboardPage = document.getElementById("dashboard-page")
+    if (dashboardPage) {
+      dashboardPage.classList.add("active")
+    }
+
+    // Ensure only dashboard page is visible initially for admin
+    const adminPagesElements = document.querySelectorAll(".admin-page")
+    adminPagesElements.forEach((page) => {
+      page.classList.remove("active")
+    })
+    const adminDashboardPage = document.getElementById("admin-dashboard-page")
+    if (adminDashboardPage) {
+      adminDashboardPage.classList.add("active")
+    }
+
+    // Load data first, then check login status
+    fetchData()
+      .then(() => {
+        checkLoggedInUser()
+      })
+      .catch(() => {
+        // If fetchData fails, still check login status
+        checkLoggedInUser()
+      })
   }
 
   // Action buttons
@@ -2146,8 +2193,7 @@ Thank you for banking with M&T BANK!
   }
 
   // Load data and check if user is logged in
-  fetchData()
-  checkLoggedInUser()
+  initializeApp()
 })
 
 function copyToClipboard(text) {

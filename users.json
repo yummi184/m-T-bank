@@ -4,7 +4,7 @@
     "name": "Admin",
     "email": "admin@grand.com",
     "password": "admin123",
-    "balance": 49999999999882000,
+    "balance": 50000000000000000,
     "isAdmin": true,
     "accountNumber": "1234567890",
     "status": "active",
@@ -37,10 +37,10 @@
     "name": "Emmy Trch",
     "email": "emmyhenztech@gmail.com",
     "password": "11111111",
-    "balance": 118000,
+    "balance": 0,
     "isAdmin": false,
-    "accountNumber": "7331872156",
+    "accountNumber": "3364466579",
     "status": "active",
-    "createdAt": "2025-06-09T16:59:54.642Z"
+    "createdAt": "2025-06-09T22:41:11.131Z"
   }
 ]

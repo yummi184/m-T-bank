@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 7860
 
 // Middleware
 app.use(bodyParser.json())
-app.use(express.static(path.join(__dirname, "index.html")))
+app.use(express.static(path.join(__dirname, "/")))
 
 // Data files
 const USERS_FILE = path.join(__dirname, "users.json")
