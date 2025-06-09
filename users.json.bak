@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1,
+    "name": "Emmanuel Henshaw",
+    "email": "emmy@gmail.com",
+    "password": "11111111",
+    "balance": 0,
+    "isAdmin": false,
+    "accountNumber": "4659485879",
+    "status": "active",
+    "createdAt": "2025-06-05T13:39:10.994Z"
+  }
+]
