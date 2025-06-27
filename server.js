@@ -3,7 +3,7 @@ const path = require("path")
 const bodyParser = require("body-parser")
 const fs = require("fs")
 const app = express()
-const PORT = process.env.PORT || 7860
+const PORT = process.env.PORT || 10000
 
 // Middleware
 app.use(bodyParser.json())
